@@ -73,9 +73,10 @@ class Repo(json: JSONObject, val eTag: String, val isDummy: Boolean = false) {
         for (manifestPackageName in packagesJson.keys()) {
             val packageContainerJson = packagesJson.getJSONObject(manifestPackageName)
 
-            if (!checkStaticDeps(packageContainerJson, manifestPackageName, this)) {
+            if (manifestPackageName?.equals("app.grapheneos.apps") ?: false) continue;
+            /*if (!checkStaticDeps(packageContainerJson, manifestPackageName, this)) {
                 continue
-            }
+            }*/
 
             val packageName = translateManifestPackageName(manifestPackageName)
 
